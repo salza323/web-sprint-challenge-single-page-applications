@@ -40,19 +40,19 @@ function App () {
   const [disabled, setDisabled] = useState(initialDisabled)
 
   const postNewPizza = newPizza => {
-    Axios.post('', newPizza)
-      .then(res => {
-        setPizza([...pizza, res.data])
-        console.log(res.data)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-      .finally(() => {
-        setFormValue(initialFormValues)
-      })
+    Axios.post('https://reqres.in/api/pizza', newPizza)
+    .then(res => {
+      setPizza([...pizza, res.data])
+      console.log(res.data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+    .finally(() => {
+      setFormValue(initialFormValues)
+    })
   }
-
+  
   const validate = (name, value) => {
     yup.reach(schema, name)
     .validate(value)
@@ -69,7 +69,7 @@ function App () {
       })
     })
   }
-
+  
   const inputChange = (name, value) => {
     validate(name, value)
     setFormValue({
@@ -77,7 +77,7 @@ function App () {
       [name]: value
     })
   }
-
+  
   const formSubmit = () => {
     const newPizza = {
       pizzaName: formValue.pizzaName.trim(), 
@@ -89,6 +89,7 @@ function App () {
       goatCheese: formValue.goatCheese, 
       special: formValue.special.trim(), 
     }
+    // console.log(newPizza)
     postNewPizza(newPizza)
   }
 
@@ -113,7 +114,7 @@ function App () {
 
         <Route path = '/Pizza'>
               <Pizza/>
-          </Route>
+        </Route>
 
     
         <Route path = '/'>
@@ -131,7 +132,7 @@ function App () {
       {
         pizza.map((pizza, idx) => {
           return (
-            <div key = {idx} clasName = 'pizza'>
+            <div key = {idx} className = 'pizza'>
               {pizza.pizzaName}
               {pizza.pizzaSize}
               {`${pizza.peperoni}`}
