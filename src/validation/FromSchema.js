@@ -3,10 +3,12 @@ import * as yup from 'yup'
 export default yup.object().shape ({
     pizzaName: yup.string()
         .required('pizzaName is required'),
-    pizzaSize: yup.boolean(true),
-    peperoni: yup.boolean(true), 
-    sausage: yup.boolean(true), 
-    onion: yup.boolean(true), 
-    bellPepper: yup.boolean(true), 
-    goatCheese:yup.boolean(true),
+    pizzaSize: yup.string()
+        .required('The size matters.'),
+    peperoni: yup.boolean(), 
+    sausage: yup.boolean(), 
+    onion: yup.boolean(), 
+    bellPepper: yup.boolean(), 
+    goatCheese: yup.boolean(),
+    special: yup.string(),
 })

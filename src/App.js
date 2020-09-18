@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, Switch } from 'react-router-dom'
 import * as yup from 'yup'
 import Axios from "axios";
 
 import PizzaForm from './Form'
+import Pizza from './Pizza'
 import schema from './validation/FromSchema'
 
 const initialFormValues = {
   pizzaName: '', 
   pizzaSize: '', 
-  peperoni: '', 
-  sausage: '', 
-  onion: '', 
-  bellPepper: '', 
-  goatCheese: '', 
+  peperoni: false, 
+  sausage: false, 
+  onion: false, 
+  bellPepper: false, 
+  goatCheese: false, 
+  special: '',
 }
 
 const initialFormErrors = {
@@ -24,6 +26,7 @@ const initialFormErrors = {
   onion: '', 
   bellPepper: '', 
   goatCheese: '', 
+  special: '',
 }
 
 const initialPizzas = []
@@ -84,16 +87,17 @@ function App () {
       onion: formValue.onion, 
       bellPepper: formValue.bellPepper, 
       goatCheese: formValue.goatCheese, 
+      special: formValue.special.trim(), 
     }
     postNewPizza(newPizza)
   }
 
   useEffect(() => {
     schema.isValid(formValue)
-      .then(valid => {
-        setDisabled(!valid)
-      }, [formValue])
-  })
+    .then(valid => {
+      setDisabled(!valid)
+    })
+  }, [formValue])
 
 
   return (
@@ -105,17 +109,41 @@ function App () {
         <Link to='/'> Home </Link>
       </header>
 
+      <Switch>
 
-   
-      <Route path = '/'>
-        <PizzaForm
-          values={formValue}
-          change={inputChange}
-          submit={formSubmit}
-          disabled={disabled}
-          errors={formErrors}
-        />
-      </Route>
+        <Route path = '/Pizza'>
+              <Pizza/>
+          </Route>
+
+    
+        <Route path = '/'>
+          <PizzaForm
+            values={formValue}
+            change={inputChange}
+            submit={formSubmit}
+            disabled={disabled}
+            errors={formErrors}
+          />
+        </Route>
+
+      </Switch>
+
+      {
+        pizza.map((pizza, idx) => {
+          return (
+            <div key = {idx} clasName = 'pizza'>
+              {pizza.pizzaName}
+              {pizza.pizzaSize}
+              {`${pizza.peperoni}`}
+              {`${pizza.sausage}`}
+              {`${pizza.onion}`}
+              {`${pizza.bellPepper}`}
+              {`${pizza.goatCheese}`}
+              {pizza.special}          
+            </div>  
+          )
+        })
+      }
     
     </div>
     
