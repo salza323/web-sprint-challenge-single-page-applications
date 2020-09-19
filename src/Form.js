@@ -49,8 +49,7 @@ export default function PizzaForm(props){
 
                 <br></br>
 
-                <label>Peperoni
-        
+                <label>Peperoni        
                 <input type = 'checkbox' name = 'peperoni' checked = {values.peperoni} onChange = {onChange}/>
                 </label>
                 <label>Sausage
@@ -71,7 +70,7 @@ export default function PizzaForm(props){
                 <input type = 'text' name = 'special' value = {values.special}  onChange={onChange} placeholder = 'Special Instructions' />
 
                 <Link to= '/Pizza'> 
-                    <button disabled = {disabled}>Place Order!</button>
+                    <button id = 'submitBtn' disabled = {disabled}>Place Order!</button>
                 </Link>
             </form>    
 
