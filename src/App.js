@@ -79,6 +79,7 @@ function App () {
   }
   
   const formSubmit = () => {
+    console.log("formSubmit")
     const newPizza = {
       pizzaName: formValue.pizzaName.trim(), 
       pizzaSize: formValue.pizzaSize, 
@@ -89,7 +90,7 @@ function App () {
       goatCheese: formValue.goatCheese, 
       special: formValue.special.trim(), 
     }
-    // console.log(newPizza)
+    console.log({newPizza})
     postNewPizza(newPizza)
   }
 

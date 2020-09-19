@@ -8,6 +8,7 @@ export default function PizzaForm(props){
     const {values, change, submit, disabled, errors} = props
 
     const onSubmit = evt => {
+        console.log("onSubmit")
         evt.preventDefault()
         submit()
     }
@@ -69,8 +70,10 @@ export default function PizzaForm(props){
 
                 <input type = 'text' name = 'special' value = {values.special}  onChange={onChange} placeholder = 'Special Instructions' />
 
-                <Link to= '/Pizza'> 
+                
                     <button id = 'submitBtn' disabled = {disabled}>Place Order!</button>
+                <Link to= '/Pizza'> 
+                    <p>Pizza confirmation here!</p>
                 </Link>
             </form>    
 
